@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+*.egg-info/
+
+# Database
+backend/data/retail.db
+
+# Environment
+.env
+.env.local
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+
+# Editor
+.DS_Store
+*.swp
+*.swo
+
+# Lock files from LibreOffice
+data/.~lock*
+
+# Misc
+src/__pycache__/
