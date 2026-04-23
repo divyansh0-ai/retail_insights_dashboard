@@ -1,7 +1,13 @@
 # Retail Insights Dashboard
 
-A lightweight data-driven application designed to help small businesses gain actionable insights from transactional data.
-The system performs customer segmentation, sales analysis, and product recommendations through a simple interactive dashboard.
+A data-driven web application that helps small retail businesses gain actionable insights from their transactional data. Upload your sales history or enter records manually, and the app will compute customer segments, surface top products, and recommend related items.
+
+## Stack
+
+- **Frontend** — React + Vite + Tailwind CSS + Recharts
+- **Backend** — FastAPI (Python)
+- **Database** — SQLite (via SQLAlchemy-free raw sqlite3)
+- **ML Pipeline** — scikit-learn (KMeans clustering, cosine similarity)
 
 ---
 
