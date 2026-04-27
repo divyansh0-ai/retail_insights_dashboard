@@ -1,92 +1,66 @@
 # Retail Insights Dashboard
 
-A data-driven web application that helps small retail businesses gain actionable insights from their transactional data. Upload your sales history or enter records manually, and the app will compute customer segments, surface top products, and recommend related items.
+A data-driven web application that helps small retail businesses gain actionable insights from their transactional data. Upload your sales history or enter records manually, and the app computes customer segments, surfaces top products, and recommends related items.
+
+---
 
 ## Stack
 
 - **Frontend** — React + Vite + Tailwind CSS + Recharts
 - **Backend** — FastAPI (Python)
-- **Database** — SQLite (via SQLAlchemy-free raw sqlite3)
+- **Database** — SQLite
 - **ML Pipeline** — scikit-learn (KMeans clustering, cosine similarity)
 
 ---
 
 ## Features
 
-* Data Preprocessing
-  Cleans raw transactional data, removes missing values, cancellations, and invalid entries, and creates derived features like TotalPrice.
-
-* RFM Analysis
-  Computes Recency, Frequency, and Monetary metrics to understand customer behavior.
-
-* Customer Segmentation
-  Uses K-Means clustering on RFM features to group customers into meaningful segments.
-
-* Product Recommendation System
-  Implements item-based collaborative filtering to suggest related products.
-
-* Interactive Dashboard
-  Built using Streamlit to display key insights such as revenue, top customers, top products, and recommendations.
+- **Data Import** — Upload CSV/Excel files or enter individual transactions manually
+- **RFM Analysis** — Computes Recency, Frequency, and Monetary metrics per customer
+- **Customer Segmentation** — K-Means clustering groups customers into VIP, Loyal, At Risk, and Inactive segments
+- **Product Recommendations** — Item-based collaborative filtering using cosine similarity
+- **Dashboard** — Live overview of revenue, top customers, top products, and monthly trends
 
 ---
 
 ## Project Structure
 
-```text
+```
+├── backend/
+│   ├── main.py               # FastAPI app and all API endpoints
+│   ├── requirements.txt
+│   ├── Procfile              # Railway deployment
+│   └── src/
+│       ├── db.py             # SQLite database module
+│       ├── preprocessing.py  # Data cleaning and validation
+│       ├── rfm.py            # RFM computation
+│       ├── clustering.py     # KMeans clustering
+│       └── recommender.py    # Cosine similarity recommendations
+├── frontend/
+│   ├── src/
+│   │   ├── api.js            # Backend fetch helpers
+│   │   ├── App.jsx           # Router and layout
+│   │   ├── components/       # Sidebar, TopBar
+│   │   └── pages/            # Dashboard, AddData, Segments, Recommendations
+│   ├── tailwind.config.js
+│   └── vite.config.js
 ├── data/
-│   └── Online Retail.xlsx
-├── src/
-│   ├── preprocessing.py
-│   ├── rfm.py
-│   ├── clustering.py
-│   └── recommender.py
-├── app_ui.py
-├── check_silhouette.py
-├── requirements.txt
-└── README.md
+│   └── Online Retail.xlsx    # Sample dataset
+└── check_silhouette.py       # Evaluate clustering quality
 ```
 
 ---
 
-## Setup Instructions
-
-### 1. Create Virtual Environment
-
-```bash
-python -m venv .venv
-```
-
-### 2. Activate Environment
-
-Linux / Mac:
-
-```bash
-source .venv/bin/activate
-```
-
-Windows:
-
-```bash
-.venv\Scripts\activate
-```
-
-### 3. Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-## Running the Application
+## Running Locally
 
 **Backend**
 ```bash
 cd backend
+pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 
-**Frontend**
+**Frontend** (in a separate terminal)
 ```bash
 cd frontend
 npm install
@@ -97,37 +71,25 @@ Open `http://localhost:5173` in your browser.
 
 ---
 
-## Clustering Evaluation
+## Seeding the Database
 
-To evaluate clustering quality:
+The database starts empty. Go to the **Add Data** page and upload `data/Online Retail.xlsx` to populate it. After that, all dashboard data will be live.
+
+---
+
+## Clustering Evaluation
 
 ```bash
 python check_silhouette.py
 ```
 
-The silhouette score measures how well the clusters are separated.
-
----
-
-## Technologies Used
-
-* Python
-* Pandas
-* Scikit-learn
-* Streamlit
-* OpenPyXL
+Prints silhouette scores for k=2 through k=7 to help pick the best cluster count.
 
 ---
 
 ## Use Cases
 
-* Customer segmentation for targeted marketing
-* Identifying high-value customers
-* Product recommendation and bundling
-* Sales performance analysis
-
----
-
-## Summary
-
-This project demonstrates how raw transactional data can be transformed into meaningful business insights using simple and efficient techniques.
+- Customer segmentation for targeted marketing
+- Identifying high-value and at-risk customers
+- Product cross-sell and bundling recommendations
+- Sales performance analysis over time
