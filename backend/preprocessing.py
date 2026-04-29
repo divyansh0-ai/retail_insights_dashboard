@@ -12,6 +12,7 @@ def clean_dataframe(df):
 
     df = df.dropna(subset=["CustomerID"])
     df["CustomerID"] = df["CustomerID"].astype(int)
+    df["StockCode"] = df["StockCode"].astype(str)
     df = df[~df["InvoiceNo"].astype(str).str.startswith("C")]
     df = df[df["Quantity"] > 0]
     df = df[df["UnitPrice"] > 0]
