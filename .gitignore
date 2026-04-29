@@ -2,28 +2,55 @@
 __pycache__/
 *.py[cod]
 *.pyo
+*.pyd
 .venv/
+venv/
 *.egg-info/
+dist/
+build/
+*.egg
+.Python
 
-# Database
+# Data files (large / sensitive)
+data/Online Retail.xlsx
+data/*.db
 backend/data/retail.db
 
 # Environment
 .env
 .env.local
+.env.*.local
+
+# Logs
+*.log
+logs/
 
 # Node
 frontend/node_modules/
 frontend/dist/
 frontend/.env
 
-# Editor
+# Editor / OS
 .DS_Store
+Thumbs.db
 *.swp
 *.swo
+.idea/
+.vscode/
+*.iml
 
-# Lock files from LibreOffice
+# Lock files from LibreOffice / office apps
 data/.~lock*
+**/.~lock*
 
-# Misc
-src/__pycache__/
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# pytest / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# mypy
+.mypy_cache/
