@@ -12,7 +12,6 @@ build/
 .Python
 
 # Data files (large / sensitive)
-data/Online Retail.xlsx
 data/*.db
 backend/data/retail.db
 
